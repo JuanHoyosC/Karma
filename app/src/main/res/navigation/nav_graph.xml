@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/loginFragment">
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.karma.ui.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_loginFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.karma.ui.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_pedirFavorFragment"
+            app:destination="@id/pedirFavorFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_perfilFragment"
+            app:destination="@id/perfilFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_verificarFavorFragment"
+            app:destination="@id/verificarFavorFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_listaFavoresFragment"
+            app:destination="@id/listaFavoresFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/pedirFavorFragment"
+        android:name="com.example.karma.ui.PedirFavorFragment"
+        android:label="fragment_pedir_favor"
+        tools:layout="@layout/fragment_pedir_favor" >
+        <action
+            android:id="@+id/action_pedirFavorFragment_to_verificarFavorFragment"
+            app:destination="@id/verificarFavorFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/perfilFragment"
+        android:name="com.example.karma.ui.PerfilFragment"
+        android:label="fragment_perfil"
+        tools:layout="@layout/fragment_perfil" />
+    <fragment
+        android:id="@+id/verificarFavorFragment"
+        android:name="com.example.karma.ui.VerificarFavorFragment"
+        android:label="fragment_verificar_favor"
+        tools:layout="@layout/fragment_verificar_favor" >
+        <action
+            android:id="@+id/action_verificarFavorFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/listaFavoresFragment"
+        android:name="com.example.karma.ui.ListaFavoresFragment"
+        android:label="fragment_lista_favores"
+        tools:layout="@layout/fragment_lista_favores" >
+        <action
+            android:id="@+id/action_listaFavoresFragment_to_detalleFragment"
+            app:destination="@id/detalleFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detalleFragment"
+        android:name="com.example.karma.ui.DetalleFragment"
+        android:label="fragment_detalle"
+        tools:layout="@layout/fragment_detalle" />
+</navigation>
