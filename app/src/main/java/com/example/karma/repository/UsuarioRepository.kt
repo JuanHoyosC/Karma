@@ -224,20 +224,31 @@ object UsuarioRepository {
     fun completarFavor(uid: String) {
         val database = Firebase.database
 
+
         val myRef = database.getReference("$uid")
         val user = FirebaseAuth.getInstance().currentUser
         user?.let {
             val uid2 = user.uid
             val myRef2 = database.getReference("$uid2")
-            if(uid2 !== uid && tomoFavorquien.value == uid2) {
-                movimiento.value?.add("Se completo un favor");
-                myRef.child("favores").child("realizado").setValue(true);
-                myRef2.child("movimientos").setValue(movimiento.value)
+            myRef2.addValueEventListener(object : ValueEventListener {
+                override fun onDataChange(dataSnapshot: DataSnapshot) {
+                    karma.value = dataSnapshot.child("karma").getValue().toString().toInt()
+                    if(uid2 !== uid && tomoFavorquien.value == uid2 && realizadoDetalle.value == false) {
+                        movimiento.value?.add("Se completo un favor");
+                        myRef.child("favores").child("realizado").setValue(true);
+                        myRef2.child("movimientos").setValue(movimiento.value)
 
-                myRef2.child("cantFavores").setValue(0)
-                Log.d("karma", karma.value.toString())
-                myRef2.child("karma").setValue((karma.value?.toInt() ?: 2) + 2)
-            }
+                        myRef2.child("cantFavores").setValue(0)
+                        Log.d("karma", karma.value.toString())
+                        myRef2.child("karma").setValue( karma.value.toString().toInt() + 2)
+                    }
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    // Failed to read value
+                    Log.w("", "Failed to read value.", error.toException())
+                }
+            })
         }
     }
 
